@@ -2,6 +2,10 @@
 
 import * as React from "react"
 import { EditorContent, EditorContext, useEditor } from "@tiptap/react"
+import { connectDB } from "@/app/lib/connectDb"
+import { getSingleNote } from "@/app/lib/getSingleNote"
+import { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 
 // --- Tiptap Core Extensions ---
 import { StarterKit } from "@tiptap/starter-kit"
@@ -73,7 +77,7 @@ import { handleImageUpload, MAX_FILE_SIZE } from "@/lib/tiptap-utils"
 // --- Styles ---
 import "@/components/tiptap-templates/simple/simple-editor.scss"
 
-import content from "@/components/tiptap-templates/simple/data/content.json"
+// import content from "@/components/tiptap-templates/simple/data/content.json"
 
 const MainToolbarContent = ({
   onHighlighterClick,
@@ -159,19 +163,42 @@ const MobileToolbarContent = ({
   </>
 )
 
-export function SimpleEditor({ setcurrentHtml }) {
+export function SimpleEditor({ uid, setcurrentHtml }) {
   const isMobile = useIsMobile()
   const windowSize = useWindowSize()
   const [mobileView, setMobileView] = React.useState("main")
   const toolbarRef = React.useRef(null)
 
+  const [fetchedHTML, setfetchedHTML] = useState("")
+  
+
+  useEffect(() => {
+    console.log(fetchedHTML);
+
+  }, [fetchedHTML])
+
+
   const editor = useEditor({
     immediatelyRender: false,
     onCreate({ editor }) {
       console.log("Child Update Triggered");
-      const html = editor.getHTML();
-      console.log(html);
-      setcurrentHtml(html);
+      
+      const loadContent = async () => {
+        try {
+          await connectDB();
+          const fetchedNote = await getSingleNote(uid);
+          setfetchedHTML(fetchedNote.body)
+          editor.commands.setContent(fetchedNote.body, false);
+          setcurrentHtml(fetchedNote.body);
+        } catch (error) {
+          prompt("There Was a Error Loading Html")
+          console.log(error);
+        }
+      }
+      if (uid) {
+        loadContent();
+      }
+
     },
     onUpdate({ editor }) {
       console.log("Child Update Triggered");
@@ -214,7 +241,7 @@ export function SimpleEditor({ setcurrentHtml }) {
         onError: (error) => console.error("Upload failed:", error),
       }),
     ],
-    content,
+    content: "one word will guide the other...",
   })
 
   const bodyRect = useCursorVisibility({

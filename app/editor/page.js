@@ -1,30 +1,83 @@
 "use client"
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { saveNote } from './saveAction'
+import { updateNote } from './updateAction'
+import { getSingleNote } from '../lib/getSingleNote'
 import { SimpleEditor } from "@/components/tiptap-templates/simple/simple-editor"
-
+import { useSearchParams } from 'next/navigation'
 
 
 const Editor = () => {
 
     const [currentHtml, setcurrentHtml] = useState("");
+    const [title, setTitle] = useState('');
+    const searchParams = useSearchParams();
+    const uid = searchParams.get("uid");
+
 
     const handlePrint = () => {
         console.log(currentHtml);
     }
 
-    // useEffect(() => {
-    //     console.log("This is parent ");
-    //     console.log(currentHtml);
+    const checkTitle = async ()=>{
+        if(uid){
+            console.log("Checking Title");
+            const fetchedNote = await getSingleNote(uid);
+            setTitle(fetchedNote.title);
+        }
+    }
 
-    // }, [currentHtml])
+    useEffect(() => {
+        console.log("Page Loaded");
+        checkTitle();
+    }, [])
+    
+
+    useEffect(() => {
+        console.log(title);
+
+    }, [title])
+
+    function formatDateToInput(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+        const day = String(date.getDate()).padStart(2, '0');
+
+        return `${year}-${month}-${day}`;
+    }
+
+    const saveNoteToDB = async () => {
+        const currentDate = new Date();
+        console.log(title);
+        console.log(currentHtml);
+        console.log(currentDate);
+        if (!uid) {
+            try {
+                await saveNote(title, currentHtml, currentDate);
+                alert('✅ Note saved!');
+            } catch (e) {
+                alert('❌ Error saving note');
+                console.log(e);
+            }
+        } else {
+            try {
+                await updateNote(title, currentHtml, currentDate);
+                alert('✅ Note updated!');
+            } catch (e) {
+                alert('❌ Error updating note');
+                console.log(e);
+            }
+        }
+    }
+
 
 
     return (
         <div className="editor-containor h-screen w-screen flex items-center justify-center">
             <div className="editor-wrapper flex flex-col gap-3 px-25 pt-10 h-[90vh] w-[90vw] rounded-2xl bg-[#5856D6]">
                 <span className="editor-header flex items-center justify-between">
-                    <input type="text" name="title" id="title" placeholder='Title' className='text-7xl font-semibold focus:outline-none' />
+                    <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" name="note-title" id="note-title" placeholder='Title' className='text-7xl font-semibold focus:outline-none' />
                     <span className="button-wrapper flex gap-5">
                         <button type="button" onClick={handlePrint} className='bg-white flex gap-1 items-center justify-center text-black font-semibold px-2 py-1 rounded-md cursor-pointer'>Summarize<span>
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +85,7 @@ const Editor = () => {
                             </svg>
                         </span>
                         </button>
-                        <button type="button" className='bg-white flex gap-2 items-center justify-center text-black font-semibold px-2 py-1 rounded-md cursor-pointer'>Save<span>
+                        <button type="button" onClick={saveNoteToDB} className='bg-white flex gap-2 items-center justify-center text-black font-semibold px-2 py-1 rounded-md cursor-pointer'>Save<span>
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9.00004 20.4199L2.79004 14.2099L5.62004 11.3799L9.00004 14.7699L18.88 4.87988L21.71 7.70988L9.00004 20.4199Z" fill="black" />
                             </svg>
@@ -42,7 +95,7 @@ const Editor = () => {
                 </span>
                 <hr />
                 <div className="editor-wrapper-me overflow-auto">
-                    <SimpleEditor setcurrentHtml={setcurrentHtml} />
+                    <SimpleEditor uid={uid} setcurrentHtml={setcurrentHtml} />
                 </div>
             </div>
         </div>
