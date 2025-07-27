@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { getAllNotes } from "./lib/getAllNotes";
 import { deleteNote } from "./lib/deleteNote";
+import AuthButtons from "./components/AuthButtons";
 
 export default function Home() { 
 
@@ -56,6 +57,7 @@ export default function Home() {
         <h1 className="text-7xl font-semibold">Take a Note</h1>
         <span className="login flex items-baseline gap-2">
           <div className="bg-white rounded-full size-10" /><p className="text-xl">username</p>
+          <AuthButtons/>
         </span>
       </div>
       <div className="note-wrapper border-b-2 h-[70vh] overflow-y-auto flex flex-wrap  gap-x-20 gap-y-10">
