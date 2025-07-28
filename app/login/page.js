@@ -10,7 +10,7 @@ export default function LoginPage() {
             </span>
             <button
                 onClick={() => signIn('google')}
-                className="flex gap-3 items-center justify-center px-6 py-3 bg-white text-black text-2xl rounded hover:bg-zinc-200 cursor-pointer hover:scale-105 transition-all duration-1200 ease-in-out"
+                className="flex gap-3 items-center justify-center px-6 py-3 bg-zinc-50 text-black text-2xl rounded transform transition-all duration-500 ease-in-out hover:bg-white cursor-pointer hover:scale-105"
             >
                 Get Started
                 <svg width="25" height="25" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">

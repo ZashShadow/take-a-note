@@ -14,7 +14,6 @@ export default function AuthButtons() {
     <div>
       {session ? (
         <>
-          <p className="mb-2">Welcome, {session.user?.name}</p>
           <SignOutButton />
         </>
       ) : (
