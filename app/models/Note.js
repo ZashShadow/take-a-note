@@ -5,6 +5,7 @@ const noteSchema = new mongoose.Schema({
   title: {type: String, required: true },
   body: {type: String, required: true },
   createdAt: {type: Date, required: true },
+  email: {type: String, required: true },
 });
 
 // 🛡️ Ensure models object exists (just in case)

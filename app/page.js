@@ -10,7 +10,7 @@ import { useSession } from "next-auth/react";
 export default function Home() {
 
   const [fetchedNotes, setfetchedNotes] = useState([]);
-  const { data: session } = useSession();
+  const { data: session } = useSession(); 
 
 
   //*************Formatting Functions******************/

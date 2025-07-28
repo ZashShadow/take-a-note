@@ -1,7 +1,19 @@
 'use client';
 import { signIn } from 'next-auth/react';
+import { useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
+    const { data: session, status } = useSession();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (status === 'authenticated') {
+            router.replace('/');
+        }
+    }, [status, router]);
+
     return (
         <div className="flex flex-col gap-8 items-center justify-center h-screen">
             <span className="text-wrapper flex flex-col justify-center items-center">

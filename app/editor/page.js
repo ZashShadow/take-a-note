@@ -6,6 +6,7 @@ import { updateNote } from './updateAction'
 import { getSingleNote } from '../lib/getSingleNote'
 import { SimpleEditor } from "@/components/tiptap-templates/simple/simple-editor"
 import { useSearchParams } from 'next/navigation'
+import { getUserEmail } from '../lib/getUserEmail'
 
 
 const Editor = () => {
@@ -13,7 +14,7 @@ const Editor = () => {
     const [currentHtml, setcurrentHtml] = useState("");
     const [title, setTitle] = useState('');
     const searchParams = useSearchParams();
-    const uid = searchParams.get("uid");
+    let uid = searchParams.get("uid");
 
 
     const handlePrint = () => {
@@ -52,9 +53,14 @@ const Editor = () => {
         console.log(title);
         console.log(currentHtml);
         console.log(currentDate);
+        const email = await getUserEmail;
+        console.log(email);
+        
+        
         if (!uid) {
             try {
-                await saveNote(title, currentHtml, currentDate);
+                const createdID = await saveNote(title, currentHtml, currentDate);
+                uid = createdID;
                 alert('✅ Note saved!');
             } catch (e) {
                 alert('❌ Error saving note');

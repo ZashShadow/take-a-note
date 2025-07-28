@@ -22,7 +22,7 @@ const NoteTile = ({ handleDelete, title, body, createdAt, uid }) => {
 
     return (
         <Link href={{ pathname: '/editor', query: { uid: uid } }}>
-            <div className='note-tile bg-[#007AFF] rounded-2xl py-8 px-5 flex flex-col  max-w-[280px] h-[315px] '>
+            <div className='note-tile bg-[#007AFF] rounded-2xl py-8 px-5 flex flex-col  w-[280px] h-[315px] '>
                 <div className="text-wrapper  flex flex-col flex-grow  gap-7">
                     <h3 className='font-semibold line-clamp-2 text-3xl'>{title}</h3>
                     <p className="overflow-hidden text-ellipsis line-clamp-6 min-h-[6.5rem]" >{body}</p>

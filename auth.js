@@ -9,5 +9,12 @@ export const { auth, handlers } = NextAuth({
     }),
   ],
   // Optional: callbacks, session strategy, adapter, etc.
+  callbacks: {
+  async redirect({ url, baseUrl }) {
+    if (url.startsWith("/")) return `${baseUrl}${url}`;
+    if (new URL(url).origin === baseUrl) return url;
+    return baseUrl;
+  },
+},
 });
 export { handlers as GET, handlers as POST };
