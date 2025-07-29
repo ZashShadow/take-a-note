@@ -124,15 +124,15 @@ const MainToolbarContent = ({
         <TextAlignButton align="right" />
         <TextAlignButton align="justify" />
       </ToolbarGroup>
-      <ToolbarSeparator />
-      <ToolbarGroup>
+      {/* <ToolbarSeparator /> */}
+      {/* <ToolbarGroup>
         <ImageUploadButton text="Add" />
-      </ToolbarGroup>
+      </ToolbarGroup> */}
       <Spacer />
-      {isMobile && <ToolbarSeparator />}
+      {/* {isMobile && <ToolbarSeparator />}
       <ToolbarGroup>
         <ThemeToggle />
-      </ToolbarGroup>
+      </ToolbarGroup> */}
     </>
   );
 }
