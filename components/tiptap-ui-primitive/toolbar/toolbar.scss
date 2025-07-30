@@ -1,7 +1,7 @@
 :root {
   --tt-toolbar-height: 2.75rem;
   --tt-safe-area-bottom: env(safe-area-inset-bottom, 0px);
-  --tt-toolbar-bg-color: var(--white);
+  --tt-toolbar-bg-color: #ffffff00;
   --tt-toolbar-border-color: var(--tt-gray-light-a-100);
 }
 
@@ -36,7 +36,7 @@
     z-index: 10;
     width: 100%;
     min-height: var(--tt-toolbar-height);
-    background: var(--tt-toolbar-bg-color);
+    background: #5856D6;
     border-bottom: 1px solid var(--tt-toolbar-border-color);
     padding: 0 0.5rem;
     overflow-x: auto;

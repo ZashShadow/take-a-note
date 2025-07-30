@@ -18,6 +18,7 @@
   background: none;
   appearance: none;
   outline: none;
+  color: black;
 
   &::placeholder {
     color: var(--tiptap-input-placeholder);

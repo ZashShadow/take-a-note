@@ -193,7 +193,7 @@
   color: var(--tt-button-default-text-color);
 
   .tiptap-button-icon {
-    color: var(--tt-button-default-icon-color);
+    color: white;
   }
 
   .tiptap-button-icon-sub {
@@ -205,7 +205,7 @@
   }
 
   .tiptap-button-dropdown-small {
-    color: var(--tt-button-default-dropdown-arrows-color);
+    color: white;
   }
 
   /* hover state of a button */
@@ -232,11 +232,11 @@
   /* Active state of a button */
   &[data-active-state="on"]:not([disabled]),
   &[data-state="open"]:not([disabled]) {
-    background-color: var(--tt-button-active-bg-color);
+    background-color: #d5d5d5;
     color: var(--tt-button-active-text-color);
 
     .tiptap-button-icon {
-      color: var(--tt-button-active-icon-color);
+      color: black;
     }
 
     .tiptap-button-icon-sub {
@@ -308,7 +308,7 @@
     color: var(--tt-button-disabled-text-color);
 
     .tiptap-button-icon {
-      color: var(--tt-button-disabled-icon-color);
+      color: rgb(175, 175, 175);
     }
   }
 }

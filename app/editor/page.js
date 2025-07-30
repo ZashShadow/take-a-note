@@ -83,7 +83,7 @@ const Editor = () => {
         <div className="editor-containor h-screen w-screen flex items-center justify-center">
             <div className="editor-wrapper flex flex-col gap-3 px-25 pt-10 h-[90vh] w-[90vw] rounded-2xl bg-[#5856D6]">
                 <span className="editor-header flex items-center justify-between">
-                    <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" name="note-title" id="note-title" placeholder='Title' className='text-7xl font-semibold focus:outline-none' />
+                    <input  value={title} onChange={(e) => setTitle(e.target.value)} type="text" name="note-title" id="note-title" placeholder='Title' className='text-7xl text-white font-semibold focus:outline-none' />
                     <span className="button-wrapper flex gap-5">
                         <button type="button" onClick={handlePrint} className='bg-white flex gap-1 items-center justify-center text-black font-semibold px-2 py-1 rounded-md cursor-pointer'>Summarize<span>
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
