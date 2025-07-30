@@ -9,7 +9,7 @@ export const connectDB = async () => {
         return;
     }
     try {
-        await mongoose.connect('mongodb://localhost:27017/users');
+        await mongoose.connect(process.env.MONGO_DB_STRING);
         isConnected = true;
         console.log('✅ MongoDB connected');
     } catch (error) {
