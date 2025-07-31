@@ -54,10 +54,10 @@ export default function Home() {
 
 
   return (
-    <div className="app-wrapper flex flex-col size-full px-32 pt-15">
-      <div className="header flex wrap items-baseline justify-between mb-12">
-        <h1 className="text-7xl font-semibold">Take a Note</h1>
-        <span className="login flex items-center gap-4">
+    <div className="app-wrapper flex flex-col h-screen w-screen px-32 max-lg:px-10 max-md:px-5 pt-15">
+      <div className="header flex max-md:flex-col wrap items-baseline justify-between max-md:items-center max-md:gap-5 mb-12">
+        <h1 className="text-7xl max-md:text-8xl font-semibold">Take a Note</h1>
+        <span className="login flex items-center gap-4 max-md:gap-4 max-md:fixed bottom-5">
           <div className={`bg-white rounded-full size-10 bg-cover `} style={{
             backgroundImage: `url(${session?.user?.image})`,
           }} />
