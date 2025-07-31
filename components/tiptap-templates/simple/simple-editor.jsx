@@ -182,7 +182,8 @@ export function SimpleEditor({ uid, setcurrentHtml }) {
     immediatelyRender: false,
     onCreate({ editor }) {
       console.log("Child Update Triggered");
-      
+      const html = editor.getHTML();
+      setcurrentHtml(html);
       const loadContent = async () => {
         try {
           await connectDB();
@@ -203,6 +204,7 @@ export function SimpleEditor({ uid, setcurrentHtml }) {
     onUpdate({ editor }) {
       console.log("Child Update Triggered");
       const html = editor.getHTML();
+      console.log(html);
       setcurrentHtml(html);
     },
     shouldRerenderOnTransaction: false,

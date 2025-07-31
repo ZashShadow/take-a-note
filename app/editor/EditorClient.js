@@ -17,10 +17,11 @@ const EditorClient = () => {
     const searchParams = useSearchParams();
     let uid = searchParams.get("uid");
 
-
-    const handlePrint = () => {
-        console.log(currentHtml);
-    }
+    useEffect(() => {
+      console.log("Parent Received Html");
+      console.log(currentHtml);
+    }, [currentHtml])
+    
 
     const checkTitle = async ()=>{
         if(uid){
@@ -60,6 +61,7 @@ const EditorClient = () => {
         
         if (!uid) {
             try {
+
                 const createdID = await saveNote(title, currentHtml, currentDate);
                 uid = createdID;
                 alert('✅ Note saved!');
