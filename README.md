@@ -43,6 +43,7 @@
 - [Auth.js](https://authjs.dev/) (Authentication)
 - [Tailwind CSS](https://tailwindcss.com/) + [SCSS](https://sass-lang.com/) + CSS
 - [Gemini API](https://ai.google.dev/) (AI-powered note summaries)
+- [ShadCn UI](https://ui.shadcn.com/) (Components Library)
 
 ---
 
